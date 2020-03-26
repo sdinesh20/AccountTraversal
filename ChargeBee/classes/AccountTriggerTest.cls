@@ -25,9 +25,11 @@ public class AccountTriggerTest {
             Test.startTest();
                 list<Account> acclist = TestDataFactory.createChildAccount(acc,KEYWORD_TEST, usr,2);
                 Database.insert(acclist);
+				list<Account> childacclist = TestDataFactory.createChildAccount(acclist[0],KEYWORD_TEST, usr,2);
+                Database.insert(childacclist);
             Test.stopTest();
             Account parent = [Select id,AnnualRevenue from Account where Id =: acc.Id];
-            system.assert(parent.AnnualRevenue == 6000);
+            system.assert(parent.AnnualRevenue == 10000);
         } 
     }
     /**
